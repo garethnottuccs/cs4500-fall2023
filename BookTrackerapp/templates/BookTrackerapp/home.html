@@ -1,0 +1,41 @@
+{% extends './base.html' %}
+
+{% block body %}
+<h1>HEADER</h1>
+<!-- Add Book Button, image is placeholder -->
+<p><a href="{% url 'add_book' %}">
+  <button>Add Book</button>
+<a></p>
+
+
+<!-- Remove Book Button -->
+
+<!-- Display books as clickable titles and clickable pictures? -->
+  <div class="container">
+      <div class="row mb-5">
+          <div class="col-12">
+              <div class="row">
+                  <div class="col-10 offset-2 m-5">
+                      <h1>Now Showcasing</h1>
+                  </div>
+              </div>
+              <div class="row">
+
+                <!-- book objects passed--> {% for book in books %}
+                  <div class="col-12 col-md-6 col-lg-4 mb-5">
+                    <!-- book pk --><a href="/books/{{book.pk}}">
+                          <div class="card shadow" style="width: 18rem; margin:0px auto;">
+                              <!-- book cover image--> <img src="{{ book.image.url }}" class="card-img-top" height="380px">
+                              <div class="card-body">
+                                <!-- book title--> <h4 class="card-title text-center">{{ book.title }}</h4>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+                  {% endfor %}
+
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}
