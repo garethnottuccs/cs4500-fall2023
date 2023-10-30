@@ -1,14 +1,55 @@
 {% extends './base.html' %}
 
+<!-- css for html code-->
+{% block head %}
+<style>
+
+h1{
+  text-align:center;
+  font-size: 50px;
+}
+
+.add_btn, .remove_btn {
+    display: inline-block;
+}
+
+.add_btn{
+  padding: 5px 5px;
+  background: green;
+}
+.delete_btn{
+  padding: 5px 5px;
+  background: red;
+  float: right;
+}
+
+
+</style>
+{% endblock %}
+
+
 {% block body %}
-<h1>HEADER</h1>
-<!-- Add Book Button, image is placeholder -->
-<p><a href="{% url 'add_book' %}">
-  <button>Add Book</button>
-<a></p>
+<h1>My Book Tracker</h1>
 
 
-<!-- Remove Book Button -->
+<!-- Buttons div class -->
+
+<div class="buttons">
+  <div class='add_btn'>
+      <a href="{% url 'add_book' %}">
+          <button>Add New Book</button>
+      <a>
+  </div>
+
+  <div class='delete_btn'>
+      <a href="{% url 'delete_book' %}">
+          <button>Delete Book</button>
+      <a>
+  </div>
+
+</div>
+
+
 
 <!-- Display books as clickable titles and clickable pictures? -->
   <div class="container">
@@ -16,7 +57,7 @@
           <div class="col-12">
               <div class="row">
                   <div class="col-10 offset-2 m-5">
-                      <h1>Now Showcasing</h1>
+                    <h2 style="font-size:30px;">Book List</h2>
                   </div>
               </div>
               <div class="row">
@@ -38,4 +79,5 @@
           </div>
       </div>
   </div>
+
 {% endblock %}
