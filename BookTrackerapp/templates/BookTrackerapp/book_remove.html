@@ -2,10 +2,10 @@
 
 {% block body %}
 
-  <h1>Book Delete</h1>
+  <h1>Book Remove</h1>
   <form method = "post">
       {% csrf_token %}
-      <p>Are you sure you want to delete this book?</p>
+      <p>Are you sure you want to delete the book "{{ book.title }}"?</p>
       <input type="submit" value="Delete"/>
   </form>
 

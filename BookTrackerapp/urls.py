@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('add/', views.add_book.as_view(), name='add_book'),
     #path('edit/', views.edit_book.asview(), name='edit_book'),
-    path('', views.default_page.as_view(), name='default_page'),
-    path('remove/', views.delete_book.as_view(), name='delete_book'),
-    path('<string:book_name>/chapter/add/', views.add_chapter.as_view(), name='add_chapter'),
+    path('', views.default_page.as_view(), name='book_list'),
+    path('<int:pk>/remove/', views.delete_book.as_view(), name='delete_book'),
+    # Note for whoever did the below, use str not string.
+    path('<str:book_name>/chapter/add/', views.add_chapter.as_view(), name='add_chapter'),
 ]

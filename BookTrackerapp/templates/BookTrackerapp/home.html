@@ -21,7 +21,37 @@ h1{
   padding: 5px 5px;
   background: red;
   float: right;
+  text-align: center;
+  margin-top: 10px;
 }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 10px;
+    width: 400px; /* Adjust the width as needed */
+    height: 200px;
+  }
+
+  h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  p {
+    text-align: center;
+  }
+
+
+  button:hover {
+    background-color: #cc0000;
+  }
 
 
 </style>
@@ -37,18 +67,30 @@ h1{
 <div class="buttons">
   <div class='add_btn'>
       <a href="{% url 'add_book' %}">
-          <button>Add New Book</button>
-      <a>
+        <button>Add New Book</button></a>
   </div>
-  <div class='delete_btn'>
-      <a href="{% url 'delete_book' %}">
-          <button>Delete Book</button>
-      <a>
-  </div>
-
 </div>
 
+</div>
+<!--<h1>Book List</h1>-->
+<!--<h1>Book List</h1>-->
+<div class="card-container">
+  {% if book_list %}
+    {% for book in book_list %}
+      <div class="card">
+        <h3>{{ book.title }}</h3>
+        <p>{{ book.summary }}</p>
+        <p>Placeholder for chapter stuff</p>
+        <div class="delete_btn">
+          <a href="{% url 'delete_book' pk=book.pk %}"><button>Delete Book</button></a>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}
 
+<!--The below code doesn't work so Chase added the above. Feel free to edit the above code. Just please leave it in a working state once done-->
 
 <!-- Display books as clickable titles and clickable pictures? -->
   <div class="container">
@@ -78,5 +120,3 @@ h1{
           </div>
       </div>
   </div>
-
-{% endblock %}
