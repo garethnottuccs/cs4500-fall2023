@@ -1,12 +1,12 @@
 {% extends './base.html' %}
 
 {% block body %}
-  <h1>Add Chapter</h1>
-  <form method = "post">
+  <h1>Edit Book</h1>
+  <form method="post">
     <div>
       {% csrf_token %}
       {{ form.as_p }}
-      <input type="submit" value="Create"/>
+      <input type="submit" value="Edit"/>
     </div>
   </form>
 {% endblock %}

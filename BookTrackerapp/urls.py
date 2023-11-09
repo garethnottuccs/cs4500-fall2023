@@ -25,5 +25,9 @@ urlpatterns = [
     #path('edit/', views.edit_book.asview(), name='edit_book'),
     path('', views.default_page.as_view(), name='book_list'),
     path('<int:pk>/remove/', views.delete_book.as_view(), name='delete_book'),
-    path('<str:book_name>/chapter/add/', views.add_chapter.as_view(), name='add_chapter'),
+    path('<int:pk>/edit/', views.edit_book.as_view(), name='edit_book'),
+    path('<int:pk>/chapter/add/',
+         views.add_chapter.as_view(),
+         name='add_chapter'),
+  path('<int:pk>/view/', views.view_book.as_view(), name='view_book'),
 ]

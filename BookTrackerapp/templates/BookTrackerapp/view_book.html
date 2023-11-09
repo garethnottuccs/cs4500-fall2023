@@ -1,0 +1,10 @@
+{% extends './base.html' %}
+
+
+{% block body %}
+<h1>{{object.title}}</h1>
+<h3>Chapters</h3>
+{% for chapter in chapters %}
+  <p>{{chapter.chapternumber}} : {{chapter.title}} <br>{{chapter.description}}</p>
+{% endfor %}
+{% endblock %}

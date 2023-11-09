@@ -14,3 +14,6 @@ class Chapter(models.Model):
   title = models.CharField(max_length=100)
   chapternumber = models.IntegerField(default=0)
   description = models.TextField(max_length=1000)
+
+  def get_absolute_url(self):
+    return reverse("book_list")
