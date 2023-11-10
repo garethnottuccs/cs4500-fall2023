@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.views.generic import DeleteView
-from .models import Book, Chapter
-from .forms import BookForm, ChapterForm
+from .models import Book, Chapter, Character
+from .forms import BookForm, ChapterForm, CharacterForm
 from django.urls import reverse_lazy
 
 
@@ -51,3 +51,18 @@ class add_chapter(CreateView):
     model = Chapter
     form_class = ChapterForm
     template_name = 'BookTrackerapp/chapter_add.html'
+
+class add_character(CreateView):
+    model = Character
+    form_class = CharacterForm
+    template_name = 'BookTrackerapp/character_add.html'
+
+# To be implemented
+#class view_character(CreateView):
+#  model = Character
+#  template_name = 'BookTrackerapp/view_character.html'
+#  
+#  def get_context_data(self, **kwargs):
+#    context = super().get_context_data(**kwargs)
+#    context['characters'] = list(self.object.character_set.all())
+#    return context

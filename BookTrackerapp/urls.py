@@ -29,5 +29,8 @@ urlpatterns = [
     path('<int:pk>/chapter/add/',
          views.add_chapter.as_view(),
          name='add_chapter'),
-  path('<int:pk>/view/', views.view_book.as_view(), name='view_book'),
+    #path('<int:pk>/chapter/', views.view_chapter.as_view(), name='chapter'),
+    path('<int:pk>/view/', views.view_book.as_view(), name='view_book'),
+    path('<int:pk>/character/add/', views.add_character.as_view(), name='add_character'),
+    #To be implemented: path('<int:pk>/character/', views.view_character.as_view(), name="character"),
 ]
