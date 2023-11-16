@@ -142,6 +142,11 @@
         <div class="chapter">
           <h4>{{chapter.chapternumber}} :{{ chapter.title }}</h4>
           <p>{{ chapter.description }}</p>
+          <div class="card-buttons">
+            <a href="{% url 'edit_chapter' pk=chapter.pk %}">
+              <button class="btn btn-secondary">Edit Chapter</button>
+            </a>
+          </div>
         </div>
       {% endfor %}
     </div>

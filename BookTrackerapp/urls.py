@@ -36,6 +36,9 @@ urlpatterns = [
     path('<int:pk>/character/edit/',
          views.edit_character.as_view(),
          name='edit_character'),
+  path('<int:pk>/chapter/edit/',
+        views.edit_chapter.as_view(),
+        name='edit_chapter'),
     path('upload/', upload_image, name='upload_image'),
 
     #To be implemented: path('<int:pk>/character/', views.view_character.as_view(), name="character"),

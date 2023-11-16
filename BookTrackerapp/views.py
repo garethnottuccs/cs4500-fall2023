@@ -68,6 +68,10 @@ class edit_character(UpdateView):
     form_class = CharacterForm
     template_name = 'BookTrackerapp/character_edit.html'
 
+class edit_chapter(UpdateView):
+  model = Chapter
+  form_class = ChapterForm
+  template_name = 'BookTrackerapp/chapter_edit.html'
 
 # To be implemented
 #class view_character(CreateView):
