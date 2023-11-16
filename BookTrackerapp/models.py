@@ -1,12 +1,12 @@
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MinValueValidator
 
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
     summary = models.TextField(max_length=500)
-
-    #image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', blank=True, null=True) 
 
     def get_absolute_url(self):
         return reverse("book_list")
@@ -15,7 +15,8 @@ class Book(models.Model):
 class Chapter(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    chapternumber = models.IntegerField(default=0)
+    #Ensures there aren't negative chapters.
+    chapternumber = models.IntegerField(validators=[MinValueValidator(0)])
     description = models.TextField(max_length=1000)
 
     def get_absolute_url(self):
@@ -27,4 +28,8 @@ class Character(models.Model):
     name = models.CharField(max_length=100)
     attributes = models.CharField(max_length=500)
     description = models.TextField(max_length=1000)
-    #image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/')
+
+
+class Image(models.Model):
+    image = models.ImageField(upload_to='images/')

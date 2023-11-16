@@ -14,23 +14,34 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path  #, include
 from BookTrackerapp import views
+from .views import upload_image
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('add/', views.add_book.as_view(), name='add_book'),
-    #path('edit/', views.edit_book.asview(), name='edit_book'),
     path('', views.default_page.as_view(), name='book_list'),
-    path('<int:pk>/remove/', views.delete_book.as_view(), name='delete_book'),
+    path('add/', views.add_book.as_view(), name='add_book'),
+    path('<int:pk>/view/', views.view_book.as_view(), name='view_book'),
     path('<int:pk>/edit/', views.edit_book.as_view(), name='edit_book'),
+    path('<int:pk>/remove/', views.delete_book.as_view(), name='delete_book'),
     path('<int:pk>/chapter/add/',
          views.add_chapter.as_view(),
          name='add_chapter'),
+
     #path('<int:pk>/chapter/', views.view_chapter.as_view(), name='chapter'),
-    path('<int:pk>/view/', views.view_book.as_view(), name='view_book'),
-    path('<int:pk>/character/add/', views.add_character.as_view(), name='add_character'),
+    path('<int:pk>/character/add/',
+         views.add_character.as_view(),
+         name='add_character'),
+    path('<int:pk>/character/edit/',
+         views.edit_character.as_view(),
+         name='edit_character'),
+    path('upload/', upload_image, name='upload_image'),
+
     #To be implemented: path('<int:pk>/character/', views.view_character.as_view(), name="character"),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

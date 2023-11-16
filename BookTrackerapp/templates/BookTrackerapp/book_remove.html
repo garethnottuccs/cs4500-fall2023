@@ -1,13 +1,84 @@
 {% extends './base.html' %}
 
-{% block body %}
+{% block head %}
+  <style>
+    body {
+      /* All comments need to be done like this. */
+      background-color: #f8f9fa;
+    }
 
-  <h1>Book Remove</h1>
-  <form method = "post">
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .btn-fancy {
+      margin-top: 20px;
+    }
+
+    .btn-fancy a{
+      text-decoration: none;
+    }
+
+    .btn-fancy button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #fff;
+      border: 1px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #000;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    .btn-fancy button:hover {
+      color: #007bff;
+      text-decoration: underline;
+    }
+
+
+  </style>
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1>Book Remove</h1>
+    <form method="post">
       {% csrf_token %}
       <p>Are you sure you want to delete the book "{{ book.title }}"?</p>
-      <input type="submit" value="Delete"/>
-  </form>
+      <div class="btn-fancy">
+        <a href="#">
+          <button>Delete</button>
+        </a>
+      </div>
+    </form>
 
-
+    <div class="btn-fancy">
+      <a href="{% url 'book_list' %}">
+        <button>Back to Home</button>
+      </a>
+    </div>
+  </div>
 {% endblock %}

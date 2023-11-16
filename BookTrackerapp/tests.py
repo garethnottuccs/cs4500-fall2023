@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import Book, Chapter
+from models import Book, Chapter
 # Create your tests here.
 
 # Define a test class for testing the Book model

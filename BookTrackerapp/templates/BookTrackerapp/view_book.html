@@ -1,10 +1,155 @@
 {% extends './base.html' %}
+{% load static %}
 
+{% block head %}
+  <style>
+    /* Add your global styles here */
+    body {
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 20px;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-buttons a,
+    .back-button a {
+      text-decoration: none;
+    }
+
+    .card-buttons button {
+      margin: 0 5px;
+      padding: 8px 12px;
+      font-size: 12px;
+      background-color: #fff;
+      border: 1px solid #000;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #555;
+      /* Add transition for color change */
+      transition: color 0.3s ease; 
+    }
+
+    .card-buttons button:hover,
+    .back-button button:hover {
+      text-decoration: underline;
+      /* Soft blue color on hover */
+      color: #007bff; 
+    }
+
+    .text-content, 
+    .back-button button,
+    .chapter {
+      padding-left: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: #fff;
+      border: 1px solid #000;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      padding: 15px;
+    }
+
+    .container p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .back-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .chapter-container {
+      display: flex;
+      /* Use space-evenly to evenly space items */
+      justify-content: space-evenly; 
+      flex-wrap: wrap;
+    }
+
+    .chapter h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .chapter p {
+      font-size: 16px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
+{% endblock %}
 
 {% block body %}
-<h1>{{object.title}}</h1>
-<h3>Chapters</h3>
-{% for chapter in chapters %}
-  <p>{{chapter.chapternumber}} : {{chapter.title}} <br>{{chapter.description}}</p>
-{% endfor %}
+  <div class="container">
+    <h1>{{ book.title }}</h1>
+
+    {% if book.image %}
+      <img src="{{ book.image.url }}" alt="{{ book.title }} Image">
+    {% else %}
+      <img src="{% static 'images/default.jpeg' %}" alt="Default Image">
+    {% endif %}
+
+    <div class="card-buttons">
+      <a href="{% url 'edit_book' pk=book.pk %}">
+        <button class="btn btn-warning">Edit</button>
+      </a>
+      <a href="{% url 'delete_book' pk=book.pk %}">
+        <button class="btn btn-danger">Delete</button>
+      </a>
+      <a href="{% url 'add_chapter' pk=book.pk %}">
+        <button class="btn btn-info">Add Chapter</button>
+      </a>
+      <a href="{% url 'add_character' pk=book.pk %}">
+        <button class="btn btn-secondary">Add Character</button>
+      </a>
+    </div>
+
+    <div class="text-content">
+      <p>{{ book.summary }}</p>
+    </div>
+
+    <h3>Chapters</h3>
+    <div class="chapter-container">
+      {% for chapter in chapters %}
+        <div class="chapter">
+          <h4>{{chapter.chapternumber}} :{{ chapter.title }}</h4>
+          <p>{{ chapter.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="back-button">
+      <a href="{% url 'book_list' %}">
+        <button class="btn btn-primary">Back to Home</button>
+      </a>
+    </div>
+  </div>
 {% endblock %}

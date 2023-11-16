@@ -1,12 +1,94 @@
 {% extends './base.html' %}
 
+{% block head %}
+  <style>
+    /* Add your custom styles for chapter_add.html here */
+    body {
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    /* Custom styles for text inputs and textarea */
+    input[type="text"],
+    input[type="number"],
+    input[type="submit"],
+    textarea {
+      border-radius: 10px; /* Round edges */
+      background-color: #ffffff; /* White background */
+      border: 1px solid #000000; /* Black outline */
+      padding: 10px; /* Adjust padding as needed */
+      margin-bottom: 10px; /* Add margin for spacing */
+      resize: none; /* Disable textarea resizing */
+    }
+
+    /* Custom styles for labels */
+    label {
+      font-weight: bold; /* Bold labels */
+    }
+
+    /* Hover effect for "Add Chapter" button */
+    input[type="submit"]:hover, 
+    a.btn-fancy:hover {
+      color: #3366cc; /* Soft blue text color on hover */
+      text-decoration: underline; /* Underline text on hover */
+    }
+
+    /* Custom styles for "Back to Home" button */
+    a.btn-fancy {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      border: 1px solid #000000;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #000000;
+      transition: color 0.3s;
+    }
+
+  </style>
+{% endblock %}
+
 {% block body %}
-  <h1>Add Chapter</h1>
-  <form method = "post">
-    <div>
+  <div>
+    <h1>Add Chapter</h1>
+    <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Create"/>
-    </div>
-  </form>
+      <!-- Dropdown menu -->
+      <label for="{{ form.book.id_for_label }}">Book:</label>
+      {{ form.book }}
+
+      <!-- Title input -->
+      <label for="{{ form.title.id_for_label }}">Title:</label>
+      {{ form.title }}
+
+      <!-- Chapter Number input -->
+      <label for="{{ form.chapternumber.id_for_label }}">Chapter Number:</label>
+      {{ form.chapternumber }}
+
+      <!-- Description input -->
+      <label for="{{ form.description.id_for_label }}">Description:</label>
+      {{ form.description }}
+      
+      <input type="submit" value="Add Chapter"/>
+      <a class="btn-fancy" href="{% url 'book_list' %}">Back to Home</a>
+    </form>
+
+  </div>
 {% endblock %}
