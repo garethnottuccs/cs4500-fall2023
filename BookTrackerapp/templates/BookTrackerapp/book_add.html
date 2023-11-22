@@ -1,72 +1,5 @@
 {% extends './base.html' %}
 
-{% block head %}
-  <style>
-    body {
-      /* All comments need to be done like this. */
-      background-color: #f8f9fa;
-    }
-
-    /* New Book header */
-    h1 {
-      text-align: center;
-      font-size: 36px;
-      margin-top: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    /* Custom styles for text inputs */
-    input[type="text"], textarea {
-      /* Round edges */
-      border-radius: 10px; 
-      /* White background */
-      background-color: #ffffff; 
-      /* Black outline */
-      border: 1px solid #000000; 
-      /* Adjust padding as needed */
-      padding: 10px; 
-      /* Add margin for spacing. Not needed, just looks nice */
-      margin-bottom: 10px; 
-    }
-
-    /* Custom styles for labels */
-    label {
-      /* Bold labels */
-      font-weight: bold; 
-    }
-
-    /* Custom styles for buttons */
-    input[type="submit"],
-    a.btn-fancy {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      border: 1px solid #000000;
-      border-radius: 10px;
-      text-decoration: none;
-      color: #000000;
-      background-color: #ffffff;
-      transition: color 0.3s;
-      cursor: pointer;
-    }
-
-    /* Hover effect for buttons */
-    input[type="submit"]:hover,
-    a.btn-fancy:hover {
-      /* Soft blue text color on hover */
-      color: #3366cc; 
-      /* Underline text on hover */
-      text-decoration: underline; 
-    }
-  </style>
-{% endblock %}
-
 {% block body %}
 
   <div>
@@ -79,12 +12,22 @@
       <label for="{{ form.summary.id_for_label }}">Summary:</label>
       {{ form.summary }}
 
+      <label for="{{ form.page_number.id_for_label }}">Page Number</label>
+      {{ form.page_number }}
+
+      <label for="{{ form.start_date.id_for_label }}">Start Date:</label>
+      {{ form.start_date }}
+
+      <label for="{{ form.end_date.id_for_label }}">End Date:</label>
+      {{ form.end_date }}
+
       <label for="{{ form.image.id_for_label }}">Image:</label>
       {{ form.image }}
 
       <input class="btn-fancy" type="submit" value="Add Book"/>
       <a class="btn-fancy" href="{% url 'book_list' %}">Back to Home</a>
     </form>
+    
     <!--<form method="post">
       {% csrf_token %}
       <label for="{{ form.title.id_for_label }}">Title:</label>

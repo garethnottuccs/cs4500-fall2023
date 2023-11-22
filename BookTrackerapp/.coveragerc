@@ -1,0 +1,6 @@
+# .coveragerc
+
+[run]
+source = .
+omit =
+    BookTracker/wsgi.py

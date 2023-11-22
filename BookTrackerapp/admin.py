@@ -1,3 +1,7 @@
+"""
+This is the admin module for the BookTrackerapp application
+"""
+
 from django.contrib import admin
 from .models import Book
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env /home/runner/group1-fall2023/venv/bin/python3
 """Django's command-line utility for administrative tasks."""
 import os
 import sys

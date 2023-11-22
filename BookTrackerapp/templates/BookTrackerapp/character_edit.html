@@ -1,66 +1,5 @@
 {% extends './base.html' %}
 
-{% block head %}
-  <style>
-    /* Add your custom styles for character_edit.html here */
-    body {
-      background-color: #f8f9fa;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 36px;
-      margin-top: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    /* Custom styles for text inputs and textarea */
-    input[type="text"],
-    textarea {
-      border-radius: 10px; /* Round edges */
-      background-color: #ffffff; /* White background */
-      border: 1px solid #000000; /* Black outline */
-      padding: 10px; /* Adjust padding as needed */
-      margin-bottom: 10px; /* Add margin for spacing */
-      resize: none; /* Disable textarea resizing */
-    }
-
-    /* Custom styles for labels */
-    label {
-      font-weight: bold; /* Bold labels */
-    }
-
-    /* Custom styles for buttons */
-    .button,
-    input[type="submit"] {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      border: 1px solid #000000;
-      border-radius: 10px;
-      text-decoration: none;
-      color: #000000;
-      background-color: #ffffff;
-      transition: color 0.3s;
-      cursor: pointer;
-    }
-
-    /* Hover effect for buttons */
-    .button:hover,
-    input[type="submit"]:hover {
-      color: #3366cc; /* Soft blue text color on hover */
-      text-decoration: underline; /* Underline text on hover */
-    }
-
-  </style>
-{% endblock %}
-
 {% block body %}
   <div>
     <h1>Edit Character</h1>
@@ -84,10 +23,10 @@
       {{ form.description }}
       
       <!-- "Edit Character" button -->
-      <input type="submit" class="button" value="Edit Character"/>
+      <input type="submit" class="btn-fancy" value="Edit Character"/>
       
       <!-- "Back to Home" button -->
-      <a class="button" href="{% url 'book_list' %}">Back to Home</a>
+      <a class="btn-fancy" href="{% url 'book_list' %}">Back to Home</a>
     </form>
   </div>
 {% endblock %}

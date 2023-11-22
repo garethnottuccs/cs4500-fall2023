@@ -1,7 +1,319 @@
 <!DOCTYPE html>
 <head>
   {% block head %}
+    <style>
+      /*-----------------BASE CLASSES-----------------*/
+      body {
+        /* All comments need to be done like this. */
+        background-color: #f8f9fa;
+      }/*end body*/
 
+      /* Custom styles for labels */
+      label {
+        /* Bold labels */
+        font-weight: bold; 
+      }/*end label*/
+
+      /* New Book header */
+      h1 {
+        text-align: center;
+        font-size: 36px;
+        margin-top: 20px;
+      }/*end h1*/
+
+      p,
+      .container p {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }/*end paragraph*/
+
+      .buttons,
+      .back-button {
+        text-align: center;
+        margin-bottom: 20px;
+      }/*end buttons*/
+
+      form, .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }/*end form*/
+
+      /*-----------------EDIT CLASSES-----------------*/
+      .edit-container {
+        background-color: #ffffff;
+        border: 1px solid #000000;
+        padding: 15px;
+        width: 300px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        /* Center both title and summary */
+        align-items: center; 
+      }/*end edit-container*/
+
+      .edit-container form {
+        display: flex;
+        flex-direction: column;
+        /* Center the form contents */
+        align-items: center; 
+      }/*end edit-container form*/
+
+      .edit-container label {
+        margin-bottom: 5px;
+        font-size: 16px; 
+        color: #555; 
+        /* Make label text bold */
+        font-weight: bold; 
+      }/*end edit-container label*/
+
+      .edit-container input[type="text"],
+      .edit-container textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        /* Border color */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        resize: none;
+      }/*end edit-container inputs*/
+
+      .edit-container input[type="submit"] {
+        margin-top: 10px;
+        padding: 5px;
+        /* White background */
+        background: #ffffff; 
+        border: 1px solid #000;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #000;
+        text-decoration: none;
+        /* Pretty but not needed */
+        transition: color 0.3s ease, text-decoration 0.3s ease;
+      }/*end edit-container submit*/
+
+      .edit-container input[type="submit"]:hover {
+        /* Soft blue text color on hover */
+        color: #007bff; 
+        /* Underline text on hover */
+        text-decoration: underline; 
+      }/*end edit-container submit hover*/
+      
+      /*-----------------INPUT CLASSES-----------------*/
+      /* Custom styles for text inputs */
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        /* Round edges */
+        border-radius: 10px; 
+        /* White background */
+        background-color: #ffffff; 
+        /* Black outline */
+        border: 1px solid #000000; 
+        /* Adjust padding as needed */
+        padding: 10px; 
+        /* Add margin for spacing. Not needed, just looks nice */
+        margin-bottom: 10px; 
+        /* Disable textarea resizing*/
+        resize: none;
+      }/*end inputs*/
+
+      /*-----------------BUTTON CLASSES-----------------*/
+      /* Custom styles for buttons */
+      input[type="submit"],
+      .button,
+      a.btn-fancy {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        border: 1px solid #000000;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #000000;
+        background-color: #ffffff;
+        transition: color 0.3s;
+        cursor: pointer;
+      }/*end btn-fancy*/
+
+      .btn-fancy {
+        margin-top: 20px;
+      }/*end btn-fancy*/
+
+      .btn-fancy a, 
+      .card-buttons a,
+      .add-buttons a,
+      .back-button a {
+        text-decoration: none;
+      }/*end button stuff*/
+
+      .btn-fancy button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #fff;
+        border: 1px solid #000;
+        border-radius: 8px;
+        cursor: pointer;
+        color: #000;
+        transition: color 0.3s ease, text-decoration 0.3s ease;
+      }/*end btn-fancy button*/
+
+      .btn-fancy button:hover{
+        color: #007bff;
+        text-decoration: underline;
+      }/*end btn-fancy button hover*/
+
+      .card-buttons,
+      .add-buttons {
+        display: flex;
+        /* Center the buttons horizontally */
+        justify-content: center; 
+        /* Add margin to the top of the buttons */
+        margin-top: 10px; 
+        /* Add margin to the bottom of the buttons */
+        margin-bottom: 10px; 
+      }/*end card buttons*/
+
+      .card-buttons button,
+      .add-buttons button {
+        /* Add a small margin between buttons */
+        margin: 0 5px; 
+        /* Adjust padding for a smaller button */
+        padding: 8px 12px; 
+        /* Adjust font size for a smaller button */
+        font-size: 12px; 
+        /* White background */
+        background-color: #fff; 
+        /* Black outline */
+        border: 1px solid #000; 
+        /* Rounded corners */
+        border-radius: 6px; 
+        /* Shadow effect */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        /* Text color */
+        color: #555; 
+        /* Add transition for color change */
+        transition: color 0.3s ease; 
+      }/*end /* buttons */
+
+      /* Hover effect for buttons */
+      input[type="submit"]:hover,
+      .button:hover,
+      a.btn-fancy:hover,
+      .card h3 a:hover,
+      .card-buttons button:hover,
+      .add-buttons button:hover,
+      .back-button button:hover {
+        /* Soft blue text color on hover */
+        color: #3366cc; 
+        /* Underline text on hover */
+        text-decoration: underline; 
+      }/*end hover*/
+
+      /*-----------------CARD CLASSES-----------------*/
+      .card {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 15px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }/*end card*/
+      
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }/*end card-container*/
+
+      .card h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }/*end card h3*/
+
+      .card h3 a {
+        color: inherit;
+        /* Remove underline */
+        text-decoration: none; 
+        /* Add transition for color change */
+        transition: color 0.3s ease; 
+      }/*end card h3 a*/
+
+      .card p {
+        font-size: 16px;
+        margin-bottom: 15px;
+      }/*card p*/
+
+      .card img {
+        max-width: 100%;
+        height: auto;
+        /* Add margin to the bottom of the image */
+        margin-bottom: 10px; 
+      }/*end card img*/
+
+      /*-----------------TEXT CLASSES-----------------*/ 
+      .back-button button,
+      .chapter {
+        padding-left: 15px;
+        /* Prevent text from wrapping */
+        white-space: nowrap; 
+        /* Hide any overflow text */
+        overflow: hidden; 
+        /* Display ellipsis (...) for overflow text */
+        text-overflow: ellipsis; 
+        background-color: #fff;
+        border: 1px solid #000;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 15px;
+      }/*end text-content*/
+
+      .text-content {
+        padding-left: 15px;
+        /* Prevent text from wrapping */
+        white-space: nowrap; 
+        /* Hide any overflow text */
+        overflow: hidden; 
+        /* Display ellipsis (...) for overflow text */
+        text-overflow: ellipsis; 
+      }
+
+      /*-----------------CHAPTER CLASSES-----------------*/
+      .chapter-container {
+        display: flex;
+        /* Use space-evenly to evenly space items */
+        justify-content: space-evenly; 
+        flex-wrap: wrap;
+      }/*end chapter-container*/
+
+      .chapter h4 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }/*end chapter h4*/
+
+      .chapter p {
+        font-size: 16px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }/*end chapter p*/      
+
+    </style>
   {% endblock %}
 </head>
 

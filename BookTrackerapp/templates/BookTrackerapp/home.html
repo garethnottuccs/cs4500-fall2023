@@ -1,141 +1,12 @@
 {% extends './base.html' %}
 {% load static %}
 
-{% block head %}
-  <style>
-    /* Add your global styles here */
-    body {
-      background-color: #f8f9fa;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 36px;
-      margin-top: 20px;
-    }
-
-    .buttons {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-
-    .card {
-      background-color: #fff;
-      border: 1px solid #dee2e6;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin: 10px;
-      padding: 15px;
-      width: 300px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .text-content {
-      padding-left: 15px;
-      /* Prevent text from wrapping */
-      white-space: nowrap; 
-      /* Hide any overflow text */
-      overflow: hidden; 
-      /* Display ellipsis (...) for overflow text */
-      text-overflow: ellipsis; 
-    }
-
-    .card h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
-
-    .card h3 a {
-      color: inherit;
-      /* Remove underline */
-      text-decoration: none; 
-      /* Add transition for color change */
-      transition: color 0.3s ease; 
-    }
-
-    .card h3 a:hover,
-    .card-buttons button:hover,
-    .add-buttons button:hover {
-      /* Add underline on hover */
-      text-decoration: underline; 
-      /* Soft blue color on hover */
-      color: #007bff; 
-    }
-
-    .card img {
-      max-width: 100%;
-      height: auto;
-      /* Add margin to the bottom of the image */
-      margin-bottom: 10px; 
-    }
-
-    .card-buttons,
-    .add-buttons {
-      display: flex;
-      /* Center the buttons horizontally */
-      justify-content: center; 
-      /* Add margin to the top of the buttons */
-      margin-top: 10px; 
-      /* Add margin to the bottom of the buttons */
-      margin-bottom: 10px; 
-    }
-
-    .card-buttons a,
-    .add-buttons a {
-      /* Remove underline from links by default */
-      text-decoration: none; 
-    }
-
-    .card-buttons button,
-    .add-buttons button {
-      /* Add a small margin between buttons */
-      margin: 0 5px; 
-      /* Adjust padding for a smaller button */
-      padding: 8px 12px; 
-      /* Adjust font size for a smaller button */
-      font-size: 12px; 
-      /* White background */
-      background-color: #fff; 
-      /* Black outline */
-      border: 1px solid #000; 
-      /* Rounded corners */
-      border-radius: 6px; 
-      /* Shadow effect */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-      /* Text color */
-      color: #555; 
-      /* Add transition for color change */
-      transition: color 0.3s ease; 
-    }
-
-  </style>
-{% endblock %}
-
 {% block body %}
   <div class="container">
     <h1>My Book Tracker</h1>
 
     <div class="card-buttons">
-      <div class='add_btn'>
+      <div class='back-button'>
         <a href="{% url 'add_book' %}">
           <button class="btn btn-primary">Add New Book</button>
         </a>
@@ -152,9 +23,13 @@
                 <!-- <img src="{% static 'images/default.jpeg' %}" alt="Book Image"> -->
                 {% if book.image %}
                   <img src="{{ book.image.url }}" alt="{{ book.title }} Image">
+                {% elif book.image %}
+                <img src="{{ book.image.url }}?{{ book.updated_at }}" alt="{{ book.title }} Image">
                 {% else %}
                   <img src="{% static 'images/default.jpeg' %}" alt="Default Image">
                 {% endif %}
+
+                
               </a>
             </div>
             <div class="card-buttons">
