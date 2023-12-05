@@ -52,10 +52,10 @@ class Character(models.Model):
     image = models.ImageField(upload_to='images/', blank=True, null=True)
 
     def get_absolute_url(self):
-        """
+      """
       Method to get the absolute URL for a chapter
       """
-        return reverse("book_list")
+      return reverse("book_list")
 
 
 class Image(models.Model):

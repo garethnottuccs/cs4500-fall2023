@@ -1,0 +1,38 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block body %}
+  <div class="container">
+    <h1>Characters for {{ book.title }}</h1>
+    <!-- Back to Book/Home Buttons -->
+    <div class="back-button">
+      <a href="{% url 'view_book' pk=book.pk %}">
+        <button class="btn-fancy">Back to Book</button>
+      </a>
+      <a href="{% url 'book_list' %}">
+        <button class="btn-fancy">Back to Home</button>
+      </a>
+    </div>
+
+    <div class="chapter-container">
+      {% for character in characters %}
+        <div class="chapter">
+          {% if character.image %}
+            <img src="{{ character.image.url }}" alt="{{ book.title }} Image">
+          {% else %}
+            <img src="{% static 'images/default.jpeg' %}" alt="Default Image">
+          {% endif %}
+          <p>{{ character.name }}</p>
+          <p>Tags: {{ character.attributes }}</p>
+          <p>{{ character.description }}</p>
+          <div class="card-buttons">
+            <a href="{% url 'edit_character' pk=character.pk %}">
+              <button class="btn-fancy">Edit Character</button>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    
+  </div>
+{% endblock %}

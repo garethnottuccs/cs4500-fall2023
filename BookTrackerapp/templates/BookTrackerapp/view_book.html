@@ -3,7 +3,7 @@
 
 {% block body %}
   <div class="container">
-    <h1>{{ book.title }}</h1>
+    <h1>{{ book.title|truncatechars:50 }}</h1>
 
     {% if book.image %}
       <img src="{{ book.image.url }}" alt="{{ book.title }} Image">
@@ -24,6 +24,12 @@
       <a href="{% url 'add_character' pk=book.pk %}">
         <button class="btn-fancy">Add Character</button>
       </a>
+      <a href="{% url 'view_characters' pk=book.pk %}">
+        <button class="btn btn-primary">View Characters</button>
+      </a>
+      <a href="{% url 'book_list' %}">
+        <button class="btn-fancy">Home</button>
+      </a>
     </div>
 
     <div class="text-content">
@@ -32,7 +38,7 @@
     <div class="number-content">
       <p>Page Number: {{ book.page_number  }}</p>
     </div>
-    <div class="text-content">
+    <div class="date-text-content">
       <p>Date started: {{ book.start_date}}</p>
       <p>Date ended: {{ book.end_date }}</p>
     </div>
@@ -52,6 +58,7 @@
       {% endfor %}
     </div>
 
+    <!-- Characters
     <h3>Characters</h3>
     <div class="chapter-container">
       {% for character in characters %}
@@ -62,7 +69,7 @@
             <img src="{% static 'images/default.jpeg' %}" alt="Default Image">
           {% endif %}
           <p>{{character.name}}</p>
-          <p>Attributes: {{ character.attributes }}</p>
+          <p>Tags: {{ character.attributes }}</p>
           <p>{{ character.description }}</p>
           <div class="card-buttons">
             <a href="{% url 'edit_character' pk=character.pk %}">
@@ -71,8 +78,10 @@
           </div>
         </div>
       {% endfor %}
-    </div>
-
+    </div> 
+    -->
+    <!-- View Characters Button -->
+    
     <div class="back-button">
       <a href="{% url 'book_list' %}">
         <button class="btn-fancy">Back to Home</button>

@@ -18,7 +18,7 @@
         {% for book in book_list %}
           <div class="card">
             <div class="text-content">
-              <h3><a href="{% url 'view_book' pk=book.pk %}">{{ book.title }}</a></h3>
+              <h3><a href="{% url 'view_book' pk=book.pk %}">{{ book.title|truncatechars:25 }}</a></h3>
               <a href="{% url 'view_book' pk=book.pk %}">
                 <!-- <img src="{% static 'images/default.jpeg' %}" alt="Book Image"> -->
                 {% if book.image %}
@@ -43,6 +43,7 @@
                 <button class="btn btn-primary">Delete</button>
               </a>
             </div>
+            <!--
             <div class="add-buttons">
               <a href="{% url 'add_chapter' pk=book.pk %}">
                 <button class="btn btn-primary">Add Chapter</button>
@@ -54,6 +55,7 @@
                 <button class="btn btn-primary">Edit Character</button>
               </a>
             </div>
+            -->
           </div>
         {% endfor %}
       {% endif %}

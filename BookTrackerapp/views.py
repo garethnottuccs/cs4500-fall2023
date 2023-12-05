@@ -5,7 +5,7 @@ from django.views.generic import DeleteView
 from .models import Book, Chapter, Character
 from .forms import BookForm, ChapterForm, CharacterForm, ImageForm
 from django.urls import reverse_lazy
-from django.http import Http404
+
 """
 BookTrackerapp Views
 """
@@ -77,6 +77,15 @@ class add_chapter(CreateView):
     model = Chapter
     form_class = ChapterForm
     template_name = 'BookTrackerapp/chapter_add.html'
+
+class view_characters(DetailView):
+  model = Book
+  template_name = 'BookTrackerapp/view_characters.html'
+
+  def get_context_data(self, **kwargs):
+      context = super().get_context_data(**kwargs)
+      context['characters'] = list(self.object.character_set.all())
+      return context
 
 
 class add_character(CreateView):

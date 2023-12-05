@@ -6,7 +6,7 @@
 
 from django.test import TestCase
 from django.urls import reverse
-from .models import Book, Chapter  #, Character, Image
+from .models import Book, Chapter, Character  #, Image
 #For asgi.py tests
 from django.core.asgi import get_asgi_application
 from BookTracker import asgi
@@ -23,11 +23,13 @@ from datetime import date
 class BookTest(TestCase):
     def setUp(self):
         # Create a new Book object for testing with a title and summary
-        self.book = Book.objects.create(title='Test Book',
-                                        summary='Test Summary',
-                                        page_number=0,
-                                        start_date=date.today(),
-                                        end_date=date.today(),)
+        self.book = Book.objects.create(
+            title='Test Book',
+            summary='Test Summary',
+            page_number=0,
+            start_date=date.today(),
+            end_date=date.today(),
+        )
 
     def test_delete_book(self):
         # Simulates a POST request to delete a book
@@ -162,3 +164,34 @@ class FormsTest(TestCase):
 
         # Check if the form is not valid
         self.assertFalse(form.is_valid())
+
+
+##################################VIEW CHARACTERS TEST################################
+class ViewCharactersTest(TestCase):
+    def setUp(self):
+        # Create a new Book object for testing with a title and summary
+        self.book = Book.objects.create(title='Test Book',
+                                        summary='Test Summary',
+                                        page_number=0)
+
+        # Create a new Character object associated with the book
+        self.character = Character.objects.create(
+            book=self.book,
+            name='Test Character',
+            attributes='Test Attributes',
+            description='Test Description')
+
+    def test_view_characters(self):
+        # Get the URL for the view_characters page for the created book
+        url = reverse('view_characters', kwargs={'pk': self.book.pk})
+
+        # Simulate a GET request to the view_characters page
+        response = self.client.get(url)
+
+        # Check if the response status code is 200 (indicating a successful request)
+        self.assertEqual(response.status_code, 200)
+
+        # Check if the response contains the expected HTML elements
+        self.assertContains(response, 'Test Character')
+        self.assertContains(response, 'Test Attributes')
+        self.assertContains(response, 'Test Description')

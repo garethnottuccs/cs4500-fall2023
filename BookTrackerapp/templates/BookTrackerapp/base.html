@@ -6,6 +6,7 @@
       body {
         /* All comments need to be done like this. */
         background-color: #f8f9fa;
+        position: relative;
       }/*end body*/
 
       /* Custom styles for labels */
@@ -125,6 +126,29 @@
         resize: none;
       }/*end inputs*/
 
+      /*-----------------NUMBER CONTENT CLASSES-----------------*/
+      .number-content {
+        position: absolute;
+        top: 120px;
+        right: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+      }/*end number-content*/
+
+      /*-----------------Date Started/Ended CONTENT CLASSES------*/
+      .date-text-content {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+        border: 2px solid #000;
+        padding: 5px;
+        border-radius: 10px;
+      }/*end number-content*/
+
       /*-----------------BUTTON CLASSES-----------------*/
       /* Custom styles for buttons */
       input[type="submit"],
@@ -175,7 +199,7 @@
         /* Center the buttons horizontally */
         justify-content: center; 
         /* Add margin to the top of the buttons */
-        margin-top: 10px; 
+        margin-top: auto; 
         /* Add margin to the bottom of the buttons */
         margin-bottom: 10px; 
       }/*end card buttons*/
@@ -185,7 +209,7 @@
         /* Add a small margin between buttons */
         margin: 0 5px; 
         /* Adjust padding for a smaller button */
-        padding: 8px 12px; 
+        padding: 15px 15px; 
         /* Adjust font size for a smaller button */
         font-size: 12px; 
         /* White background */
@@ -228,6 +252,9 @@
         display: flex;
         flex-direction: column;
         position: relative;
+        align-items: center;
+        text-align: center;
+        max-height: 400px;
       }/*end card*/
       
       .card-container {
@@ -239,6 +266,10 @@
       .card h3 {
         font-size: 24px;
         margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width : 100%;
       }/*end card h3*/
 
       .card h3 a {
@@ -255,10 +286,13 @@
       }/*card p*/
 
       .card img {
-        max-width: 100%;
+        /*max-width: 100%;
         height: auto;
         /* Add margin to the bottom of the image */
         margin-bottom: 10px; 
+        max-height: 250px;
+        max-width: 250px;
+        object-fit: contain;
       }/*end card img*/
 
       /*-----------------TEXT CLASSES-----------------*/ 
@@ -281,12 +315,14 @@
 
       .text-content {
         padding-left: 15px;
+        width: 500px;
         /* Prevent text from wrapping */
-        white-space: nowrap; 
+        word-wrap: break-word;
         /* Hide any overflow text */
         overflow: hidden; 
         /* Display ellipsis (...) for overflow text */
-        text-overflow: ellipsis; 
+        text-overflow: ellipsis;
+        white-space: normal;
       }
 
       /*-----------------CHAPTER CLASSES-----------------*/
@@ -296,6 +332,22 @@
         justify-content: space-evenly; 
         flex-wrap: wrap;
       }/*end chapter-container*/
+
+       .chapter {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 15px;
+        width: 300px; /* Set fixed width for the chapter card */
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 100%;
+        min-height: 313px;
+        overflow-y: auto;
+      }
 
       .chapter h4 {
         font-size: 20px;
@@ -310,9 +362,18 @@
         margin-bottom: 10px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        white-space: normal;
       }/*end chapter p*/      
 
+      /*-----------------IMAGE CLASSES-----------------*/
+
+      .book-image {
+        max-width: 100%; /* Make the image fill the container width */
+        max-width: calc(100% - 20px); /* Limit the maximum width with padding */
+        padding-right: 20px; /* Add right padding to create the space */
+      }
+
+      
     </style>
   {% endblock %}
 </head>

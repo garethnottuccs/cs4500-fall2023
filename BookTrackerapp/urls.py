@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path  #, include
 from BookTrackerapp import views
-from .views import upload_image
+from .views import upload_image, view_characters
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -32,6 +32,9 @@ urlpatterns = [
          name='add_chapter'),
 
     #path('<int:pk>/chapter/', views.view_chapter.as_view(), name='chapter'),
+    path('<int:pk>/characters/', 
+         view_characters.as_view(), 
+         name='view_characters'),
     path('<int:pk>/character/add/',
          views.add_character.as_view(),
          name='add_character'),
