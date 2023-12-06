@@ -1,0 +1,22 @@
+{% extends './base.html' %}
+
+{% block body %}
+  <div class="container">
+    <h1>Chapter Remove</h1>
+    <form method="post">
+      {% csrf_token %}
+      <p>Are you sure you want to delete character "{{ character.name }}"?</p>
+      <div class="btn-fancy">
+        <a href="#">
+          <button>Delete</button>
+        </a>
+      </div>
+    </form>
+
+    <div class="btn-fancy">
+      <a>
+        <button onclick="history.back()">Back to character list</button>
+      </a>
+    </div>
+  </div>
+{% endblock %}

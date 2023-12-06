@@ -53,6 +53,9 @@
             <a href="{% url 'edit_chapter' pk=chapter.pk %}">
               <button class="btn-fancy">Edit Chapter</button>
             </a>
+            <a href="{% url 'delete_chapter' pk=chapter.pk %}">
+              <button class="btn-fancy">Delete Chapter</button>
+            </a>
           </div>
         </div>
       {% endfor %}

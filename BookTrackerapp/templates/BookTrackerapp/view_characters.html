@@ -29,6 +29,9 @@
             <a href="{% url 'edit_character' pk=character.pk %}">
               <button class="btn-fancy">Edit Character</button>
             </a>
+            <a href="{% url 'delete_character' pk=character.pk %}">
+              <button class="btn-fancy">Delete Character</button>
+            </a>
           </div>
         </div>
       {% endfor %}

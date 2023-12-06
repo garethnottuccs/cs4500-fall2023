@@ -5,7 +5,6 @@ from django.views.generic import DeleteView
 from .models import Book, Chapter, Character
 from .forms import BookForm, ChapterForm, CharacterForm, ImageForm
 from django.urls import reverse_lazy
-
 """
 BookTrackerapp Views
 """
@@ -78,14 +77,15 @@ class add_chapter(CreateView):
     form_class = ChapterForm
     template_name = 'BookTrackerapp/chapter_add.html'
 
-class view_characters(DetailView):
-  model = Book
-  template_name = 'BookTrackerapp/view_characters.html'
 
-  def get_context_data(self, **kwargs):
-      context = super().get_context_data(**kwargs)
-      context['characters'] = list(self.object.character_set.all())
-      return context
+class view_characters(DetailView):
+    model = Book
+    template_name = 'BookTrackerapp/view_characters.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['characters'] = list(self.object.character_set.all())
+        return context
 
 
 class add_character(CreateView):
@@ -107,6 +107,14 @@ class edit_character(UpdateView):
     template_name = 'BookTrackerapp/character_edit.html'
 
 
+class delete_character(DeleteView):
+    """
+    Delete characters for each book
+    """
+    model = Character
+    template_name = 'BookTrackerapp/character_remove.html'
+    success_url = reverse_lazy('book_list')
+
 class edit_chapter(UpdateView):
     """
     Edit chapters for each book
@@ -114,6 +122,15 @@ class edit_chapter(UpdateView):
     model = Chapter
     form_class = ChapterForm
     template_name = 'BookTrackerapp/chapter_edit.html'
+
+
+class delete_chapter(DeleteView):
+    """
+  Delete a chapter from a book
+  """
+    model = Chapter
+    template_name = 'BookTrackerapp/chapter_remove.html'
+    success_url = reverse_lazy('book_list')
 
 
 # To be implemented
