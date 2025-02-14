@@ -2,7 +2,7 @@
 ## Book/Reading Tracker
 Application for the management and tracking of current and previous books read. 
 
-Created by Gareth Nott, Joshua Brisson, Rilee Seebaum, and two others whose names are lost, under the direction of Dr. kristen Walcott, for CS4300-001, Fall 2023. 
+Created by Gareth Nott, Joshua Brisson, Rilee Seebaum, and two others whose names are lost, under the direction of Dr. Kristen Walcott, for CS4300-001, Fall 2023, University of Colorado at Colorado Springs. 
 
 Written, tested, and run using Django. 
 
